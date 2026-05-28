@@ -1,3 +1,187 @@
 body {
-  background-color: antiquewhite;
+  margin: 0;
+  font-family: "IBM Plex Mono", sans-serif;
+  background: #111;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    linear-gradient(rgba(12, 10, 8, 0.28), rgba(12, 10, 8, 0.28)),
+    url("walnut-panel.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  filter: blur(1px) contrast(1.05) brightness(0.98);
+  transform: scale(1.02);
+  z-index: -1;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  margin: 60px auto;
+  padding: 35px;
+  border-radius: 18px;
+  background-color: #f9e190;
+  background-image: url("https://www.transparenttextures.com/patterns/green-dust-and-scratches.png");
+  border: 34px solid #f6bc35;
+  box-shadow:
+    0 0 18px rgba(246, 189, 54, 0.865),
+    0 28px 60px rgba(0, 0, 0, 0.45),
+    inset 0 2px 6px rgba(255, 255, 255, 0.25),
+    inset 0 -6px 10px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 24px;
+  letter-spacing: 9px;
+  text-transform: uppercase;
+  color: #3a2f10;
+  margin: 0 0 25px 0;
+}
+
+h1::before {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #b8922f;
+  opacity: 0.7;
+  margin-right: 15px;
+}
+
+h1::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #b8922f;
+  opacity: 0.7;
+  margin-left: 15px;
+}
+
+select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 16px;
+  background: #f6f0da;
+  border: 2px solid #d5a630;
+  color: #3a2f10;
+}
+
+.city {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 10px;
+  margin: 8px 0;
+  border-bottom: 1px dashed rgba(58, 47, 16, 0.25);
+  transition: all 0.25s ease;
+  border-radius: 10px;
+}
+
+.city:hover {
+  background: rgba(184, 146, 47, 0.08);
+  transform: translateX(4px);
+}
+
+.city h2 {
+  margin: 0;
+  font-size: 28px;
+  font-family: "Share Tech Mono", monospace;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: #3a2f10;
+}
+
+.city-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.city-header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.timezone {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #b8922f;
+  font-family: "Share Tech Mono", monospace;
+}
+
+.date {
+  font-size: 13px;
+  opacity: 0.75;
+  color: #3a2f10;
+}
+
+.time {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 82px;
+  font-weight: bold;
+  color: #f4f1e8;
+  background: #0d0e10;
+  padding: 12px 18px;
+  border-radius: 10px;
+  box-shadow:
+    inset 0 0 14px rgba(0, 0, 0, 0.95),
+    0 10px 20px rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  letter-spacing: 2px;
+}
+
+.seconds {
+  font-size: 0.95em;
+  color: #f6bc35;
+  margin-left: 2px;
+  display: inline-block;
+  text-shadow:
+    0 0 5px rgba(246, 188, 53, 0.55),
+    0 0 12px rgba(246, 188, 53, 0.25);
+  opacity: 0.95;
+}
+
+.milliseconds {
+  font-size: 0.26em;
+  font-weight: 400;
+  color: rgba(249, 246, 239, 0.74);
+  margin-left: 4px;
+  letter-spacing: 1px;
+  position: relative;
+  top: -2px;
+}
+
+footer {
+  text-align: center;
+  margin-top: 25px;
+  font-size: 12px;
+  opacity: 0.6;
+  color: #4f462b;
+}
+footer a {
+  color: #a07304;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+footer a:hover {
+  color: #3a2f10;
+  text-decoration: underline;
 }

@@ -3,39 +3,91 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Share+Tech+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Gochi+Hand&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Gowun+Batang&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Parisienne&family=Patrick+Hand+SC&family=Raleway:ital,wght@0,100..900;1,100..900&family=Schoolbell&family=Share+Tech+Mono&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&family=Special+Elite&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="css/style.css" />
-    <title>World Clock - Milena Wzietek</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
+
+<!-- Moment Timezone -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.45/moment-timezone-with-data.min.js"></script>
+    <title>World Clock - Milena</title>
   </head>
+
   <body>
+    <div class="background-overlay"></div>
+
     <div class="container">
-      <h1>World Clock</h1>
+      <h1>WORLD CLOCK</h1>
+
       <select>
         <option value="">Select a city...</option>
         <option value="">London</option>
         <option value="">Barcelona</option>
         <option value="">Chicago</option>
       </select>
-      <div class="city">
-        <h2>Madrid 🇪🇸</h2>
-        <div class="date">May 26th 2026</div>
-        <div class="time">1:45:15 AM</div>
-        <h2>Lisbon 🇵🇹</h2>
-        <div class="date">May 26th 2026</div>
-        <div class="time">1:45:15 AM</div>
-        <h2>Tokyo 🇯🇵</h2>
-        <div class="date">May 26th 2026</div>
-        <div class="time">1:45:15 AM</div>
-        <h2>Perth 🇦🇺</h2>
-        <div class="date">May 26th 2026</div>
-        <div class="time">1:45:15 AM</div>
-      </div>
+
+      <div class="city" id="madrid">
+  <div class="city-info">
+    <div class="city-header">
+      <h2>MADRID</h2>
     </div>
+
+    <div class="timezone">GMT</div>
+    <div class="date">Tuesday, May 26</div>
+  </div>
+
+  <div class="time">
+    01:45<span class="seconds">:15</span>
+  </div>
+</div>
+
+<div class="city" id="perth">
+  <div class="city-info">
+    <div class="city-header">
+      <h2>PERTH</h2>
+    </div>
+
+    <div class="timezone">GMT</div>
+    <div class="date">Wednesday, May 27</div>
+  </div>
+
+  <div class="time">
+    08:45<span class="seconds">:15</span>
+  </div>
+</div>
+
+<div class="city" id="tokyo">
+  <div class="city-info">
+    <div class="city-header">
+      <h2>TOKYO</h2>
+    </div>
+
+    <div class="timezone">GMT</div>
+    <div class="date">Wednesday, May 27</div>
+  </div>
+
+  <div class="time">
+    09:45<span class="seconds">:15</span>
+  </div>
+</div>
+
     <footer>
-      This project was coded with 🩶 by Milena and is
+      This project was coded with 🖤 by <strong>Milena</strong> and is
       <a href="https://github.com/MillieBea/WorldClock" target="_blank">
-        open-sourced on GitHub</a
-      >
+        open-sourced on GitHub
+      </a>
     </footer>
+
     <script src="javascript/index.js"></script>
   </body>
 </html>
