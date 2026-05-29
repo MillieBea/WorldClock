@@ -18,7 +18,6 @@
     <link rel="stylesheet" href="css/style.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
 
-<!-- Moment Timezone -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.45/moment-timezone-with-data.min.js"></script>
     <title>World Clock - Milena</title>
   </head>
@@ -27,15 +26,19 @@
     <div class="background-overlay"></div>
 
     <div class="container">
-      <h1>WORLD CLOCK</h1>
+      <h1>WORLD TIME TERMINAL</h1>
 
-      <select>
-        <option value="">Select a city...</option>
-        <option value="">London</option>
-        <option value="">Barcelona</option>
-        <option value="">Chicago</option>
+      <select id="city">
+        <option value="">Select destination...</option>
+        <option value="Europe/London">London</option>
+  <option value="Europe/Moscow">Moscow</option>
+  <option value="America/Chicago">Chicago</option>
+  <option value="Australia/Sydney">Sydney</option>
+  <option value="Europe/Paris">Paris</option>
+  <option value="Asia/Tokyo">Tokyo</option>
+  <option value="Australia/Perth">Perth</option>
       </select>
-
+<div id="cities">
       <div class="city" id="madrid">
   <div class="city-info">
     <div class="city-header">
@@ -47,7 +50,8 @@
   </div>
 
   <div class="time">
-    01:45<span class="seconds">:15</span>
+    01:45<span class="seconds">:15</span><span class="milliseconds">
+ </span>
   </div>
 </div>
 
@@ -62,7 +66,8 @@
   </div>
 
   <div class="time">
-    08:45<span class="seconds">:15</span>
+    08:45<span class="seconds">:15</span><span class="milliseconds">
+ </span>
   </div>
 </div>
 
@@ -77,10 +82,11 @@
   </div>
 
   <div class="time">
-    09:45<span class="seconds">:15</span>
+    09:45<span class="seconds">:15</span><span class="milliseconds">
+ </span>
   </div>
 </div>
-
+</div>
     <footer>
       This project was coded with 🖤 by <strong>Milena</strong> and is
       <a href="https://github.com/MillieBea/WorldClock" target="_blank">
