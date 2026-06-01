@@ -83,13 +83,22 @@ function renderSelectedCity() {
       </div>
 
     </div>
+    <div class="all-cities">
+    <a href="/">← Return HOME</a>
+  </div>
   `;
 }
 
 function updateSelectedCity(event) {
-  selectedCityTimeZone = event.target.value;
+  let selectedValue = event.target.value;
 
-  if (selectedCityTimeZone.length === 0) {
+  if (selectedValue === "current") {
+    selectedCityTimeZone = moment.tz.guess();
+  } else {
+    selectedCityTimeZone = selectedValue;
+  }
+
+  if (!selectedCityTimeZone) {
     return;
   }
 

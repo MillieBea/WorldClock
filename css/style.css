@@ -28,7 +28,7 @@ body::before {
   z-index: 1;
   max-width: 700px;
   margin: 60px auto;
-  padding: 35px;
+  padding: 25px;
   border-radius: 18px;
   background-color: #f9e190;
   background-image: url("https://www.transparenttextures.com/patterns/green-dust-and-scratches.png");
@@ -211,6 +211,38 @@ select:active {
   letter-spacing: 1px;
   position: relative;
   top: -2px;
+}
+.all-cities {
+  text-align: center;
+  margin-top: 24px;
+}
+
+.all-cities a {
+  display: inline-block;
+  padding: 10px 16px;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  color: #3a2f10;
+  border: 2px solid #d5a630;
+  border-radius: 8px;
+  background: rgba(246, 240, 218, 0.45);
+
+  transition:
+    all 0.25s ease,
+    transform 0.2s ease;
+}
+
+.all-cities a:hover {
+  background: rgba(246, 188, 53, 0.15);
+  border-color: #f6bc35;
+  box-shadow: 0 0 12px rgba(246, 188, 53, 0.45);
+  transform: translateY(-1px);
+}
+
+.all-cities a:active {
+  transform: translateY(1px);
 }
 
 footer {
