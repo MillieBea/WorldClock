@@ -1,36 +1,31 @@
 let selectedCityTimeZone = null;
 
+const citiesElement = document.querySelector("#cities");
+
+const defaultCitiesHTML = citiesElement.innerHTML;
+
 function updateCity(cityId, timezone) {
   let cityElement = document.querySelector(`#${cityId}`);
-  if (cityElement === null) {
-    return;
-  }
+  if (cityElement === null) return;
+
   let timezoneElement = cityElement.querySelector(".timezone");
   let dateElement = cityElement.querySelector(".date");
   let timeElement = cityElement.querySelector(".time");
+
   let cityTime = moment().tz(timezone);
 
   timezoneElement.innerHTML = cityTime.format("z");
-
   dateElement.innerHTML = cityTime.format("dddd, MMMM Do YYYY");
 
   timeElement.innerHTML = `
     ${cityTime.format("HH:mm")}
-    
-    <span class="seconds">
-      :${cityTime.format("ss")}
-    </span>
-
-    <span class="milliseconds">
-      .${cityTime.format("SSS")}
-    </span>
+    <span class="seconds">:${cityTime.format("ss")}</span>
+    <span class="milliseconds">.${cityTime.format("SSS")}</span>
   `;
 }
 
 function updateClock() {
-  if (selectedCityTimeZone !== null) {
-    return;
-  }
+  if (selectedCityTimeZone !== null) return;
 
   updateCity("madrid", "Europe/Madrid");
   updateCity("perth", "Australia/Perth");
@@ -38,18 +33,23 @@ function updateClock() {
 }
 
 updateClock();
-
 setInterval(updateClock, 80);
 
+function resetToHome() {
+  selectedCityTimeZone = null;
+  document.querySelector("#city").value = "";
+  citiesElement.innerHTML = defaultCitiesHTML;
+  updateClock();
+}
+
 function renderSelectedCity() {
-  if (selectedCityTimeZone === null) {
-    return;
-  }
-  let cityName = selectedCityTimeZone.replace("_", " ").split("/")[1];
+  if (!selectedCityTimeZone) return;
+
+  let cityName = selectedCityTimeZone.split("/").pop().replace(/_/g, " ");
+
   let cityTime = moment().tz(selectedCityTimeZone);
-  let citiesElement = document.querySelector("#cities");
+
   citiesElement.innerHTML = `
-  
     <div class="city selected-city">
 
       <div class="city-info">
@@ -69,28 +69,30 @@ function renderSelectedCity() {
       </div>
 
       <div class="time">
-
         ${cityTime.format("HH:mm")}
-
-        <span class="seconds">
-          :${cityTime.format("ss")}
-        </span>
-
-        <span class="milliseconds">
-          .${cityTime.format("SSS")}
-        </span>
-
+        <span class="seconds">:${cityTime.format("ss")}</span>
+        <span class="milliseconds">.${cityTime.format("SSS")}</span>
       </div>
 
     </div>
+
     <div class="all-cities">
-    <a href="/">← Return HOME</a>
-  </div>
+      <a href="/" id="return-home">← Return Home</a>
+    </div>
   `;
+
+  document
+    .querySelector("#return-home")
+    .addEventListener("click", function (event) {
+      event.preventDefault();
+      resetToHome();
+    });
 }
 
 function updateSelectedCity(event) {
   let selectedValue = event.target.value;
+
+  if (!selectedValue) return;
 
   if (selectedValue === "current") {
     selectedCityTimeZone = moment.tz.guess();
@@ -98,19 +100,13 @@ function updateSelectedCity(event) {
     selectedCityTimeZone = selectedValue;
   }
 
-  if (!selectedCityTimeZone) {
-    return;
-  }
-
   renderSelectedCity();
 }
+
+document.querySelector("#city").addEventListener("change", updateSelectedCity);
 
 setInterval(function () {
   if (selectedCityTimeZone !== null) {
     renderSelectedCity();
   }
 }, 80);
-
-let citiesSelectElement = document.querySelector("#city");
-
-citiesSelectElement.addEventListener("change", updateSelectedCity);
