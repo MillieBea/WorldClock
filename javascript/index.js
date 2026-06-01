@@ -1,12 +1,13 @@
 let selectedCityTimeZone = null;
 
 const citiesElement = document.querySelector("#cities");
+const citySelect = document.querySelector("#city");
 
 const defaultCitiesHTML = citiesElement.innerHTML;
 
 function updateCity(cityId, timezone) {
   let cityElement = document.querySelector(`#${cityId}`);
-  if (cityElement === null) return;
+  if (!cityElement) return;
 
   let timezoneElement = cityElement.querySelector(".timezone");
   let dateElement = cityElement.querySelector(".date");
@@ -25,11 +26,13 @@ function updateCity(cityId, timezone) {
 }
 
 function updateClock() {
-  if (selectedCityTimeZone !== null) return;
-
   updateCity("madrid", "Europe/Madrid");
   updateCity("perth", "Australia/Perth");
   updateCity("tokyo", "Asia/Tokyo");
+
+  if (selectedCityTimeZone !== null) {
+    updateSelectedCityView();
+  }
 }
 
 updateClock();
@@ -37,7 +40,7 @@ setInterval(updateClock, 80);
 
 function resetToHome() {
   selectedCityTimeZone = null;
-  document.querySelector("#city").value = "";
+  citySelect.value = "";
   citiesElement.innerHTML = defaultCitiesHTML;
   updateClock();
 }
@@ -46,8 +49,6 @@ function renderSelectedCity() {
   if (!selectedCityTimeZone) return;
 
   let cityName = selectedCityTimeZone.split("/").pop().replace(/_/g, " ");
-
-  let cityTime = moment().tz(selectedCityTimeZone);
 
   citiesElement.innerHTML = `
     <div class="city selected-city">
@@ -58,21 +59,13 @@ function renderSelectedCity() {
           <h2>${cityName.toUpperCase()}</h2>
         </div>
 
-        <div class="timezone">
-          ${cityTime.format("z")}
-        </div>
+        <div class="timezone"></div>
 
-        <div class="date">
-          ${cityTime.format("dddd, MMMM Do YYYY")}
-        </div>
+        <div class="date"></div>
 
       </div>
 
-      <div class="time">
-        ${cityTime.format("HH:mm")}
-        <span class="seconds">:${cityTime.format("ss")}</span>
-        <span class="milliseconds">.${cityTime.format("SSS")}</span>
-      </div>
+      <div class="time"></div>
 
     </div>
 
@@ -80,14 +73,37 @@ function renderSelectedCity() {
       <a href="/" id="return-home">← Return Home</a>
     </div>
   `;
-
-  document
-    .querySelector("#return-home")
-    .addEventListener("click", function (event) {
-      event.preventDefault();
-      resetToHome();
-    });
 }
+
+function updateSelectedCityView() {
+  if (!selectedCityTimeZone) return;
+
+  let cityTime = moment().tz(selectedCityTimeZone);
+
+  let timezoneElement = document.querySelector(".selected-city .timezone");
+  let dateElement = document.querySelector(".selected-city .date");
+  let timeElement = document.querySelector(".selected-city .time");
+
+  if (!timezoneElement || !dateElement || !timeElement) return;
+
+  let cityName = selectedCityTimeZone.split("/").pop().replace(/_/g, " ");
+
+  timezoneElement.innerHTML = cityTime.format("z");
+  dateElement.innerHTML = cityTime.format("dddd, MMMM Do YYYY");
+
+  timeElement.innerHTML = `
+    ${cityTime.format("HH:mm")}
+    <span class="seconds">:${cityTime.format("ss")}</span>
+    <span class="milliseconds">.${cityTime.format("SSS")}</span>
+  `;
+}
+
+citiesElement.addEventListener("click", function (event) {
+  if (event.target.id === "return-home") {
+    event.preventDefault();
+    resetToHome();
+  }
+});
 
 function updateSelectedCity(event) {
   let selectedValue = event.target.value;
@@ -103,10 +119,4 @@ function updateSelectedCity(event) {
   renderSelectedCity();
 }
 
-document.querySelector("#city").addEventListener("change", updateSelectedCity);
-
-setInterval(function () {
-  if (selectedCityTimeZone !== null) {
-    renderSelectedCity();
-  }
-}, 80);
+citySelect.addEventListener("change", updateSelectedCity);
